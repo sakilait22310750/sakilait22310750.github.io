@@ -132,6 +132,18 @@ h1 em{font-style:normal;color:var(--accent)}
 .diff{font-family:var(--mono);font-size:16px;white-space:nowrap}
 .diff s{color:var(--muted);text-decoration-color:rgba(0,255,136,.55)}
 .diff b{color:var(--accent);font-weight:500}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.mcard{display:flex;flex-direction:column;gap:6px;padding:16px;background:var(--bg);border:1px solid var(--line);border-radius:10px;transition:border-color .3s}
+.mcard:hover{border-color:rgba(0,255,136,.45)}
+.mcard.wide{grid-column:1/-1}
+.mcard .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--muted)}
+.mcard .big b{font-size:32px;font-weight:600;color:var(--accent);line-height:1.1}
+.mcard .was{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.mcard .was s{text-decoration-color:rgba(0,255,136,.55)}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.trio span{display:flex;flex-direction:column;gap:2px}
+.trio b{font-size:26px;font-weight:600;color:var(--accent);line-height:1.1}
+.trio i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--muted)}
 .note{font-family:var(--mono);font-size:11px;line-height:1.6;color:var(--muted);margin:14px 0 0}
 .shots{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:0 36px 36px}
 .shots:empty{display:none}
@@ -143,10 +155,17 @@ h1 em{font-style:normal;color:var(--accent)}
 .proj p{color:var(--muted);font-size:15px;margin:12px 0 18px}
 .proj .win{margin-top:auto;padding-top:18px;font-family:var(--mono);font-size:13px;color:var(--accent)}
 .proj .chips{margin-bottom:0}
+.proj-links{display:flex;gap:10px;margin-top:18px}
+.proj-links .btn-sm{height:38px;padding:0 16px;font-size:12px}
+.proj-links .btn:hover{border-color:var(--accent);color:var(--accent)}
 
 /* skills */
 .skills{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.sk{padding:24px}
+.sk{padding:24px;cursor:default;transition:border-color .25s ease,background-color .25s ease,box-shadow .25s ease}
+.js .sk.rv{transition:opacity .8s ease var(--d,0s),translate .9s cubic-bezier(.16,.84,.24,1) var(--d,0s),border-color .25s ease,background-color .25s ease,box-shadow .25s ease}
+.sk:hover,.sk:focus-within{border-color:var(--accent);background-color:#14291f;box-shadow:0 0 0 1px rgba(0,255,136,.25),0 12px 32px rgba(0,255,136,.07)}
+.sk:hover .chip,.sk:focus-within .chip{border-color:rgba(0,255,136,.28);color:var(--text)}
+.sk .chip{transition:border-color .25s,color .25s}
 .sk h3{font-family:var(--mono);font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
 
 /* education */
@@ -220,6 +239,8 @@ footer{padding:30px 0 40px;border-top:1px solid var(--line);font-family:var(--mo
   .stat{padding:18px}
   .stat b{font-size:32px}
   .feature-main,.feature-side{padding:24px}
+  .mcard .big b{font-size:26px}
+  .trio b{font-size:22px}
   .shots{padding:0 24px 24px;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:64%;overflow-x:auto;scroll-snap-type:x mandatory}
   .shots img{scroll-snap-align:start}
   .xp-item,.edu .card{padding:22px}
@@ -284,15 +305,8 @@ footer{padding:30px 0 40px;border-top:1px solid var(--line);font-family:var(--mo
 
     <div class="card term" role="group" aria-label="About me, shown as a terminal">
       <div class="term-bar"><i></i><i></i><i></i><span>sakila@portfolio: ~</span></div>
-      <p class="sr">Software engineer and Data Science graduate from SLIIT. Stack: React, Spring Boot, Python, Laravel, PostgreSQL and Power BI. Currently an intern software engineer at Loons Lab, building with Laravel, PHP and JavaScript. Open to full-time roles.</p>
+      <p class="sr">Software engineer and Data Science graduate from SLIIT. Stack: React, Spring Boot, Python, Laravel, PostgreSQL and Power BI. Currently an intern software engineer at Loons Lab, building hospital systems and AI tools with Laravel, PHP, JavaScript and CNN models. Open to full-time roles.</p>
       <div class="term-body" id="term" aria-hidden="true"></div>
-    </div>
-
-    <div class="stats">
-      <div class="card stat rv"><b data-to="4">4</b><span>Full-stack modules shipped</span></div>
-      <div class="card stat rv" style="--d:.08s"><b data-to="85000" data-comma data-suffix="+">85,000+</b><span>Reviews analysed</span></div>
-      <div class="card stat rv" style="--d:.16s"><b data-to="0.887" data-dec="3">0.887</b><span>Recommender F1-score</span></div>
-      <div class="card stat rv" style="--d:.24s"><b data-to="3">3</b><span>Languages modelled (EN · SI · TA)</span></div>
     </div>
   </div>
 </div>
@@ -305,15 +319,16 @@ footer{padding:30px 0 40px;border-top:1px solid var(--line);font-family:var(--mo
     <p class="sec-lead rv">Two internships so far, one on a SaaS platform and one working across web and machine learning.</p>
     <div class="xp">
       <article class="card xp-item rv">
-        <div class="xp-when"><b>Oct 2026 — Present</b>Intern</div>
+        <div class="xp-when"><b>Nov 2026 — Present</b>Intern</div>
         <div>
           <h3>Software Engineer Intern</h3>
           <p class="xp-co">Loons Lab</p>
           <ul class="pts">
-            <li>Building and maintaining web application features with Laravel, PHP and JavaScript.</li>
-            <li>Working with CNN models on machine learning features.</li>
+            <li>Built and maintained features for a hospital management and laboratory system using Laravel, PHP and JavaScript.</li>
+            <li>Designed a Patient Laboratory Insights popup that visualizes lab trends, with a polished dark-blue UI.</li>
+            <li>Built and deployed an AI X-ray assistant ("AI Lab") for a Laravel 11 hospital Radiology Information System. It uses DenseNet-121/169 CNN models trained on the Stanford MURA dataset in Google Colab, covering chest, hand/wrist, shoulder/elbow and forearm/humerus/finger, with AUC 0.89–0.91 and Grad-CAM heat-maps.</li>
           </ul>
-          <div class="chips"><span class="chip">Laravel</span><span class="chip">PHP</span><span class="chip">JavaScript</span><span class="chip">CNN models</span></div>
+          <div class="chips"><span class="chip">Laravel</span><span class="chip">PHP</span><span class="chip">JavaScript</span><span class="chip">CNN models</span><span class="chip">DenseNet</span><span class="chip">Grad-CAM</span></div>
         </div>
       </article>
       <article class="card xp-item rv" style="--d:.08s">
@@ -352,14 +367,17 @@ footer{padding:30px 0 40px;border-top:1px solid var(--line);font-family:var(--mo
           <li>Fused collaborative, content-based, sentiment and visual signals, with cold-start handling for new users and new hotels.</li>
         </ul>
         <div class="chips"><span class="chip">Python</span><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">Flask</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">React Native</span></div>
+        <div class="proj-links" style="margin-top:20px"><a class="btn btn-ghost btn-sm" href="https://github.com/sakilait22310750/Research-New" target="_blank" rel="noopener">GitHub ↗</a></div>
       </div>
       <div class="feature-side">
         <p class="side-t">Results vs the collaborative-filtering baseline</p>
-        <div class="metric"><span class="lbl">F1-score</span><span class="diff"><s>0.703</s> → <b>0.887</b></span></div>
-        <div class="metric"><span class="lbl">RMSE</span><span class="diff"><s>1.34</s> → <b>0.82</b></span></div>
-        <div class="metric"><span class="lbl">Cold-start hotels (F1)</span><span class="diff"><s>0.389</s> → <b>0.712</b></span></div>
-        <div class="metric"><span class="lbl">Sentiment F1 (EN / SI / TA)</span><span class="diff"><b>0.919 / 0.867 / 0.845</b></span></div>
-        <div class="metric"><span class="lbl">User satisfaction</span><span class="diff"><b>83.7%</b></span></div>
+        <div class="mgrid">
+          <div class="mcard"><span class="lbl">F1-score</span><span class="big"><b data-to="0.887" data-dec="3">0.887</b></span><span class="was">was <s>0.703</s></span></div>
+          <div class="mcard"><span class="lbl">RMSE (lower is better)</span><span class="big"><b data-to="0.82" data-dec="2">0.82</b></span><span class="was">was <s>1.34</s></span></div>
+          <div class="mcard"><span class="lbl">Cold-start hotels (F1)</span><span class="big"><b data-to="0.712" data-dec="3">0.712</b></span><span class="was">was <s>0.389</s></span></div>
+          <div class="mcard"><span class="lbl">User satisfaction</span><span class="big"><b data-to="83.7" data-dec="1" data-suffix="%">83.7%</b></span><span class="was">45 participants</span></div>
+          <div class="mcard wide"><span class="lbl">Sentiment F1 by language</span><span class="trio"><span><b data-to="0.919" data-dec="3">0.919</b><i>English</i></span><span><b data-to="0.867" data-dec="3">0.867</b><i>Sinhala</i></span><span><b data-to="0.845" data-dec="3">0.845</b><i>Tamil</i></span></span></div>
+        </div>
         <p class="note">Evaluated on a held-out temporal test split. Satisfaction from user testing with 45 participants.</p>
       </div>
       <!-- App screenshots are embedded below -->
@@ -373,6 +391,7 @@ footer{padding:30px 0 40px;border-top:1px solid var(--line);font-family:var(--mo
         <p>A recommendation engine combining collaborative filtering, content-based filtering and popularity-based methods, tuned to reduce cold-start issues.</p>
         <div class="chips"><span class="chip">Python</span><span class="chip">Scikit-learn</span><span class="chip">React</span><span class="chip">PostgreSQL</span></div>
         <div class="win">+20% recommendation accuracy</div>
+        <div class="proj-links"><a class="btn btn-ghost btn-sm" href="https://github.com/sakilait22310750/Personalized-Recommendation-System-for-E-Commerce" target="_blank" rel="noopener">GitHub ↗</a></div>
       </article>
       <article class="card proj rv" style="--d:.08s">
         <span class="tag">2024</span>
@@ -380,6 +399,7 @@ footer{padding:30px 0 40px;border-top:1px solid var(--line);font-family:var(--mo
         <p>A machine learning model that predicts whether employees will leave after a data science training programme, to support HR decisions.</p>
         <div class="chips"><span class="chip">Python</span><span class="chip">Django</span><span class="chip">React</span></div>
         <div class="win">−30% prediction error</div>
+        <div class="proj-links"><a class="btn btn-ghost btn-sm" href="https://github.com/sakilait22310750/AI-Driven-Employee-Retention-Model-for-HR-Decision-Making" target="_blank" rel="noopener">GitHub ↗</a></div>
       </article>
       <article class="card proj rv" style="--d:.16s">
         <span class="tag">2025</span>
@@ -387,6 +407,7 @@ footer{padding:30px 0 40px;border-top:1px solid var(--line);font-family:var(--mo
         <p>A star-schema data warehouse with SSIS ETL pipelines, an SSAS OLAP cube for multidimensional analysis, and interactive Power BI dashboards.</p>
         <div class="chips"><span class="chip">SSIS</span><span class="chip">SSAS</span><span class="chip">SSMS</span><span class="chip">Power BI</span><span class="chip">Excel</span></div>
         <div class="win">Drill-down · roll-up · slice · dice</div>
+        <div class="proj-links"><a class="btn btn-ghost btn-sm" href="https://github.com/sakilait22310750/Data-Warehousing-Business-Intelligence-Project" target="_blank" rel="noopener">GitHub ↗</a></div>
       </article>
     </div>
   </div>
@@ -529,7 +550,7 @@ footer{padding:30px 0 40px;border-top:1px solid var(--line);font-family:var(--mo
         }
         requestAnimationFrame(step);
       });
-    }, {threshold:.6});
+    }, {threshold:.4});
     counters.forEach(function(el){
       el.textContent = fmt(0, +(el.dataset.dec || 0), 'comma' in el.dataset);
       cio.observe(el);
@@ -576,7 +597,7 @@ footer{padding:30px 0 40px;border-top:1px solid var(--line);font-family:var(--mo
     ['cmd', 'cat stack.txt'],
     ['out', 'React · Spring Boot · Python · Laravel · PostgreSQL · Power BI'],
     ['cmd', 'cat now.txt'],
-    ['out', 'Intern software engineer at Loons Lab. Building with Laravel, PHP and JavaScript.'],
+    ['out', 'Intern software engineer at Loons Lab. Building hospital systems and AI tools with Laravel and CNNs.'],
     ['cmd', 'status'],
     ['out', 'Open to full-time roles. Ready for the next build.']
   ];
