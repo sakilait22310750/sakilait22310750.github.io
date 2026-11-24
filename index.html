@@ -160,14 +160,26 @@ h1 em{font-style:normal;color:var(--accent)}
 .certs span{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
 
 /* contact */
-.contact{position:relative;overflow:hidden;text-align:center;padding:72px 32px}
-.contact::before{content:"";position:absolute;left:50%;top:-40%;width:620px;height:420px;translate:-50% 0;background:radial-gradient(closest-side,rgba(0,255,136,.16),transparent);pointer-events:none}
-.contact h2{position:relative;font-size:clamp(32px,5vw,56px);margin-bottom:14px}
-.contact p{position:relative;color:var(--muted);max-width:520px;margin:0 auto 30px}
-.contact .cta{position:relative;justify-content:center;margin:0 0 22px}
-.contact .meta{position:relative;justify-content:center}
-.contact .meta a{transition:color .2s}
-.contact .meta a:hover{color:var(--accent)}
+#contact{scroll-margin-top:70px}
+.contact{position:relative;overflow:hidden;padding:56px}
+.contact::before{content:"";position:absolute;left:-10%;top:-45%;width:620px;height:420px;background:radial-gradient(closest-side,rgba(0,255,136,.14),transparent);pointer-events:none}
+.ct-grid{position:relative;display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:start}
+.contact h2{font-size:clamp(32px,4.4vw,48px);margin-bottom:14px}
+.ct-lead{color:var(--muted);max-width:420px;margin:0 0 26px}
+.ct-links{display:flex;flex-direction:column;gap:12px;margin-top:26px;font-family:var(--mono);font-size:13px}
+.ct-links a{color:var(--accent);width:max-content;transition:opacity .2s}
+.ct-links a:hover{opacity:.7}
+.ct-links span{color:var(--muted);font-size:12px}
+.ct-btns{display:flex;flex-wrap:wrap;gap:12px}
+.form{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:26px;display:grid;gap:16px}
+.form label{display:grid;gap:8px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.form input,.form textarea{width:100%;font:inherit;font-family:var(--mono);font-size:14px;color:var(--text);background:var(--raised);border:1px solid var(--line);border-radius:8px;padding:13px 14px;transition:border-color .2s,box-shadow .2s}
+.form textarea{min-height:130px;resize:vertical}
+.form input::placeholder,.form textarea::placeholder{color:#5d7769}
+.form input:focus,.form textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,255,136,.12)}
+.form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.form-note{min-height:18px;font-family:var(--mono);font-size:12px;color:var(--accent);margin:0}
+.form-note.err{color:#ff7a7a}
 footer{padding:30px 0 40px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--muted)}
 .foot{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between}
 .foot a:hover{color:var(--accent)}
@@ -183,6 +195,7 @@ footer{padding:30px 0 40px;border-top:1px solid var(--line);font-family:var(--mo
   .xp-item{grid-template-columns:170px minmax(0,1fr);gap:24px}
 }
 @media (max-width:900px){
+  .ct-grid{grid-template-columns:1fr;gap:32px}
   section{padding:72px 0}
   .hero-grid{grid-template-columns:1fr;gap:36px}
   .profile{max-width:320px}
@@ -209,7 +222,8 @@ footer{padding:30px 0 40px;border-top:1px solid var(--line);font-family:var(--mo
   .feature-main,.feature-side{padding:24px}
   .shots{padding:0 24px 24px;grid-template-columns:1fr}
   .xp-item,.edu .card{padding:22px}
-  .contact{padding:52px 22px}
+  .contact{padding:34px 20px}
+  .form{padding:20px}
   .nav-r .btn-sm{display:none}
   .term-body{font-size:13px}
   .certs li{flex-direction:column;gap:2px}
@@ -235,7 +249,7 @@ footer{padding:30px 0 40px;border-top:1px solid var(--line);font-family:var(--mo
       <a href="#contact">Contact</a>
     </nav>
     <div class="nav-r">
-      <a class="btn btn-primary btn-sm" href="mailto:sakila066@gmail.com?subject=Hello%20Sakila">Let's talk ↗</a>
+      <a class="btn btn-primary btn-sm" href="#contact">Let's talk ↗</a>
       <button class="menu-btn" id="menu" type="button" aria-expanded="false" aria-controls="links" aria-label="Open menu"><span></span><span></span></button>
     </div>
   </div>
@@ -426,14 +440,30 @@ footer{padding:30px 0 40px;border-top:1px solid var(--line);font-family:var(--mo
 <section id="contact" aria-labelledby="ct-h">
   <div class="wrap">
     <div class="card contact rv">
-      <p class="eyebrow">Contact</p>
-      <h2 id="ct-h">Let's build something useful.</h2>
-      <p>I'm open to full-time roles and interesting projects. The fastest way to reach me is email.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="mailto:sakila066@gmail.com?subject=Hello%20Sakila">sakila066@gmail.com ↗</a>
-        <button class="btn btn-ghost" id="copy" type="button">Copy email</button>
+      <div class="ct-grid">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2 id="ct-h">Your next build starts with a hello.</h2>
+          <p class="ct-lead">Tell me about the role, the project or the problem. I'm open to full-time roles and interesting product work, and I reply fast.</p>
+          <div class="ct-btns">
+            <a class="btn btn-primary" href="mailto:sakila066@gmail.com?subject=Hello%20Sakila">Send an email ↗</a>
+            <button class="btn btn-ghost" id="copy" type="button">Copy email</button>
+          </div>
+          <div class="ct-links">
+            <a href="https://github.com/sakilait22310750" target="_blank" rel="noopener">GitHub ↗</a>
+            <a href="https://www.linkedin.com/in/sakila-dilshan-b5b349249/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <span>Kandy, Sri Lanka · UTC+5:30</span>
+          </div>
+        </div>
+        <form class="form" id="cform" novalidate>
+          <label>Name<input type="text" name="name" placeholder="Your name" autocomplete="name" required></label>
+          <label>Email<input type="email" name="email" placeholder="you@company.com" autocomplete="email" required></label>
+          <label>Message<textarea name="message" placeholder="What are you building?" required></textarea></label>
+          <input class="hp" type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn btn-primary" type="submit" id="csend">Send message ↗</button>
+          <p class="form-note" id="cnote" role="status" aria-live="polite"></p>
+        </form>
       </div>
-      <p class="meta"><a href="https://github.com/sakilait22310750" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.linkedin.com/in/sakila-dilshan-b5b349249/" target="_blank" rel="noopener">LinkedIn ↗</a><span>Kandy, Sri Lanka</span></p>
     </div>
   </div>
 </section>
@@ -511,6 +541,30 @@ footer{padding:30px 0 40px;border-top:1px solid var(--line);font-family:var(--mo
     var email = 'sakila066@gmail.com';
     function done(){ copy.textContent = 'Copied ✓'; setTimeout(function(){ copy.textContent = 'Copy email'; }, 1800); }
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(email).then(done, function(){});
+  });
+
+
+  /* contact form: sends through Web3Forms if a key is set, otherwise opens your email app */
+  var W3F_KEY = ''; // paste your free Web3Forms access key here (web3forms.com) to send without an email app
+  var cform = document.getElementById('cform');
+  if (cform) cform.addEventListener('submit', function(e){
+    e.preventDefault();
+    var note = document.getElementById('cnote'), btn = document.getElementById('csend');
+    var f = cform.elements, n = f.name.value.trim(), m = f.email.value.trim(), t = f.message.value.trim();
+    note.className = 'form-note';
+    if (f.botcheck.value) return;
+    if (!n || !/^\S+@\S+\.\S+$/.test(m) || !t) { note.className = 'form-note err'; note.textContent = 'Please fill in your name, a valid email and a message.'; return; }
+    if (W3F_KEY) {
+      btn.disabled = true; note.textContent = 'Sending…';
+      fetch('https://api.web3forms.com/submit', {method:'POST', headers:{'Content-Type':'application/json',Accept:'application/json'},
+        body: JSON.stringify({access_key:W3F_KEY, subject:'Portfolio message from '+n, name:n, email:m, message:t})})
+        .then(function(r){return r.json();})
+        .then(function(d){ btn.disabled = false; if (d.success) { cform.reset(); note.textContent = 'Thanks! Your message was sent.'; } else throw 0; })
+        .catch(function(){ btn.disabled = false; note.className = 'form-note err'; note.textContent = 'Could not send. Please email sakila066@gmail.com directly.'; });
+    } else {
+      location.href = 'mailto:sakila066@gmail.com?subject=' + encodeURIComponent('Portfolio message from ' + n) + '&body=' + encodeURIComponent(t + '\n\n' + n + '\n' + m);
+      note.textContent = 'Opening your email app…';
+    }
   });
 
   /* terminal typing (layout is reserved up front, so nothing jumps) */
